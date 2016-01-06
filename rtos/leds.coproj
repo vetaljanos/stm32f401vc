@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project version="2G - 2.0.3" name="leds">
+  <Target name="rtos" isCurrent="1">
+    <Device manufacturerId="9" manufacturerName="ST" chipId="251" chipName="STM32F401VC" boardId="" boardName="" boardUrl="" coreId="4" coreName="Cortex M4"/>
+    <BuildOption>
+      <Compile>
+        <Option name="OptimizationLevel" value="0"/>
+        <Option name="UseFPU" value="0"/>
+        <Option name="UserEditCompiler" value=""/>
+        <Option name="SupportCPlusplus" value="0"/>
+        <Option name="DEBUG" value="2"/>
+        <Option name="WARNING" value="1"/>
+        <Includepaths>
+          <Includepath path="."/>
+        </Includepaths>
+        <DefinedSymbols>
+          <Define name="STM32F401VC"/>
+          <Define name="USE_STDPERIPH_DRIVER"/>
+        </DefinedSymbols>
+      </Compile>
+      <Link useDefault="0">
+        <Option name="DiscardUnusedSection" value="0"/>
+        <Option name="UserEditLinkder" value=""/>
+        <Option name="UseMemoryLayout" value="1"/>
+        <Option name="nostartfiles" value="0"/>
+        <Option name="LTO" value="0"/>
+        <Option name="IsNewStartupCode" value="1"/>
+        <LinkedLibraries/>
+        <MemoryAreas debugInFlashNotRAM="1">
+          <Memory name="IROM1" type="ReadOnly" size="0x00040000" startValue="0x08000000"/>
+          <Memory name="IRAM1" type="ReadWrite" size="0x00010000" startValue="0x20000000"/>
+          <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
+          <Memory name="IRAM2" type="ReadWrite" size="" startValue=""/>
+        </MemoryAreas>
+        <LocateLinkFile path="c:/users/vetal/appdata/roaming/coocox/coide/configuration/programdata/leds/arm-gcc-link.ld" type="0"/>
+      </Link>
+      <Output>
+        <Option name="OutputFileType" value="0"/>
+        <Option name="Path" value="./"/>
+        <Option name="Name" value="leds"/>
+        <Option name="HEX" value="1"/>
+        <Option name="BIN" value="1"/>
+      </Output>
+      <User>
+        <UserRun name="Run#1" type="Before" checked="0" value=""/>
+        <UserRun name="Run#1" type="After" checked="0" value=""/>
+      </User>
+    </BuildOption>
+    <DebugOption>
+      <Option name="org.coocox.codebugger.gdbjtag.core.adapter" value="ST-Link"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.debugMode" value="SWD"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.clockDiv" value="1M"/>
+      <Option name="org.coocox.codebugger.gdbjtag.corerunToMain" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.jlinkgdbserver" value=""/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.userDefineGDBScript" value=""/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.targetEndianess" value="0"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.jlinkResetMode" value="Type 0: Normal"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.resetMode" value="SYSRESETREQ"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ifSemihost" value="0"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ifCacheRom" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ipAddress" value="127.0.0.1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.portNumber" value="2009"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.autoDownload" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.verify" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.downloadFuction" value="Erase Effected"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.defaultAlgorithm" value="C:\Users\vetal\AppData\Roaming\CooCox\CoIDE\config\flash\CooCox-Flash\CoIDE_STM32F4xx_256K\STM32F4xx_256.elf"/>
+    </DebugOption>
+    <ExcludeFile/>
+  </Target>
+  <Components path="./"/>
+  <LocalComponents/>
+  <Files>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_hash_sha1.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_sha1.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_pwr.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_pwr.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_sdio.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_sdio.c" type="1"/>
+    <File name="components/rtos/Minimal/TaskNotify.c" path="components/rtos/Minimal/TaskNotify.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_adc.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h" type="1"/>
+    <File name="components/rtos/projdefs.h" path="components/rtos/projdefs.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_rcc.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_dma.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dma.c" type="1"/>
+    <File name="components/rtos/Minimal/QueueOverwrite.c" path="components/rtos/Minimal/QueueOverwrite.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_dbgmcu.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dbgmcu.h" type="1"/>
+    <File name="components/rtos/croutine.h" path="components/rtos/croutine.h" type="1"/>
+    <File name="components/rtos/list.h" path="components/rtos/list.h" type="1"/>
+    <File name="components/FreeRTOSConfig.h" path="components/FreeRTOSConfig.h" type="1"/>
+    <File name="components/rtos/include/QueueOverwrite.h" path="components/rtos/include/QueueOverwrite.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_i2c.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_i2c.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_tim.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_wwdg.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_wwdg.c" type="1"/>
+    <File name="components/rtos/Minimal/recmutex.c" path="components/rtos/Minimal/recmutex.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_exti.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_exti.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_hash_md5.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_md5.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_dcmi.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dcmi.h" type="1"/>
+    <File name="components/rtos/include/semtest.h" path="components/rtos/include/semtest.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_spi.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_spi.c" type="1"/>
+    <File name="components/STM32F4xx/stm32f4xx_conf.h" path="components/STM32F4xx/stm32f4xx_conf.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_usart.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h" type="1"/>
+    <File name="components/rtos/include/integer.h" path="components/rtos/include/integer.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_dma.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dma.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_dac.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dac.c" type="1"/>
+    <File name="components/rtos/include/PollQ.h" path="components/rtos/include/PollQ.h" type="1"/>
+    <File name="components/startup_stm32f4xx.S" path="components/startup_stm32f4xx.S" type="1"/>
+    <File name="components/rtos/tasks.c" path="components/rtos/tasks.c" type="1"/>
+    <File name="components/CMSIS/core_cmFunc.h" path="components/CMSIS/core_cmFunc.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_rcc.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c" type="1"/>
+    <File name="components/main.h" path="components/main.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_dbgmcu.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dbgmcu.c" type="1"/>
+    <File name="components/rtos/Minimal/comtest_strings.c" path="components/rtos/Minimal/comtest_strings.c" type="1"/>
+    <File name="components/rtos/Minimal/QPeek.c" path="components/rtos/Minimal/QPeek.c" type="1"/>
+    <File name="components/rtos/Minimal/flash_timer.c" path="components/rtos/Minimal/flash_timer.c" type="1"/>
+    <File name="components/rtos/task.h" path="components/rtos/task.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_adc.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_adc.c" type="1"/>
+    <File name="components/rtos/timers.c" path="components/rtos/timers.c" type="1"/>
+    <File name="components/rtos/include/blocktim.h" path="components/rtos/include/blocktim.h" type="1"/>
+    <File name="components/rtos/Minimal/integer.c" path="components/rtos/Minimal/integer.c" type="1"/>
+    <File name="components/rtos/include/AltBlock.h" path="components/rtos/include/AltBlock.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_crc.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_crc.c" type="1"/>
+    <File name="components/rtos/Minimal/TimerDemo.c" path="components/rtos/Minimal/TimerDemo.c" type="1"/>
+    <File name="components/rtos/include/fileIO.h" path="components/rtos/include/fileIO.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_i2c.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_i2c.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_tim.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_tim.h" type="1"/>
+    <File name="components/rtos/include" path="" type="2"/>
+    <File name="components/CMSIS/core_cm4_simd.h" path="components/CMSIS/core_cm4_simd.h" type="1"/>
+    <File name="components/rtos/timers.h" path="components/rtos/timers.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_hash.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash.c" type="1"/>
+    <File name="components/rtos/semphr.h" path="components/rtos/semphr.h" type="1"/>
+    <File name="components/STM32F4xx/system_stm32f4xx.h" path="components/STM32F4xx/system_stm32f4xx.h" type="1"/>
+    <File name="components/system_stm32f4xx.c" path="components/system_stm32f4xx.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_rng.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rng.c" type="1"/>
+    <File name="components/rtos/FreeRTOS.h" path="components/rtos/FreeRTOS.h" type="1"/>
+    <File name="components/rtos/Minimal/death.c" path="components/rtos/Minimal/death.c" type="1"/>
+    <File name="components/rtos/Minimal/QueueSetPolling.c" path="components/rtos/Minimal/QueueSetPolling.c" type="1"/>
+    <File name="components/rtos/Minimal/AltPollQ.c" path="components/rtos/Minimal/AltPollQ.c" type="1"/>
+    <File name="components/rtos/include/mevents.h" path="components/rtos/include/mevents.h" type="1"/>
+    <File name="components/rtos/Minimal/flash.c" path="components/rtos/Minimal/flash.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_dcmi.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dcmi.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_dac.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dac.h" type="1"/>
+    <File name="components/rtos/croutine.c" path="components/rtos/croutine.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_fsmc.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_fsmc.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_flash.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_flash.h" type="1"/>
+    <File name="components/CMSIS/core_cm4.h" path="components/CMSIS/core_cm4.h" type="1"/>
+    <File name="components/rtos/Minimal/GenQTest.c" path="components/rtos/Minimal/GenQTest.c" type="1"/>
+    <File name="components/CMSIS/arm_math.h" path="components/CMSIS/arm_math.h" type="1"/>
+    <File name="components/rtos/include/recmutex.h" path="components/rtos/include/recmutex.h" type="1"/>
+    <File name="components/CMSIS/arm_common_tables.h" path="components/CMSIS/arm_common_tables.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_sdio.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_sdio.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_crc.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_crc.h" type="1"/>
+    <File name="components/rtos/Minimal/EventGroupsDemo.c" path="components/rtos/Minimal/EventGroupsDemo.c" type="1"/>
+    <File name="components/rtos/Minimal/AltBlock.c" path="components/rtos/Minimal/AltBlock.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_cryp_aes.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_aes.c" type="1"/>
+    <File name="components/rtos/Minimal/PollQ.c" path="components/rtos/Minimal/PollQ.c" type="1"/>
+    <File name="components/rtos/Minimal/comtest.c" path="components/rtos/Minimal/comtest.c" type="1"/>
+    <File name="components/rtos" path="" type="2"/>
+    <File name="components/rtos/list.c" path="components/rtos/list.c" type="1"/>
+    <File name="components/rtos/include/QueueSetPolling.h" path="components/rtos/include/QueueSetPolling.h" type="1"/>
+    <File name="components/rtos/event_groups.c" path="components/rtos/event_groups.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_usart.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c" type="1"/>
+    <File name="components/rtos/include/comtest.h" path="components/rtos/include/comtest.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_gpio.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c" type="1"/>
+    <File name="components/rtos/Minimal/IntSemTest.c" path="components/rtos/Minimal/IntSemTest.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_hash.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_hash.h" type="1"/>
+    <File name="components/rtos/include/print.h" path="components/rtos/include/print.h" type="1"/>
+    <File name="components/rtos/Minimal" path="" type="2"/>
+    <File name="components/rtos/include/QPeek.h" path="components/rtos/include/QPeek.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_iwdg.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_iwdg.h" type="1"/>
+    <File name="components/rtos/include/flash_timer.h" path="components/rtos/include/flash_timer.h" type="1"/>
+    <File name="components/rtos/StackMacros.h" path="components/rtos/StackMacros.h" type="1"/>
+    <File name="components/rtos/include/flop.h" path="components/rtos/include/flop.h" type="1"/>
+    <File name="components/rtos/Minimal/crhook.c" path="components/rtos/Minimal/crhook.c" type="1"/>
+    <File name="components/rtos/Minimal/countsem.c" path="components/rtos/Minimal/countsem.c" type="1"/>
+    <File name="components/CMSIS/core_cm3.h" path="components/CMSIS/core_cm3.h" type="1"/>
+    <File name="components/rtos/Minimal/sp_flop.c" path="components/rtos/Minimal/sp_flop.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_flash.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_flash.c" type="1"/>
+    <File name="components/rtos/include/IntQueue.h" path="components/rtos/include/IntQueue.h" type="1"/>
+    <File name="components/rtos/include/comtest_strings.h" path="components/rtos/include/comtest_strings.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_exti.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_exti.c" type="1"/>
+    <File name="components/rtos/include/IntSemTest.h" path="components/rtos/include/IntSemTest.h" type="1"/>
+    <File name="components/rtos/port.c" path="components/rtos/port.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver" path="" type="2"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_cryp.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_cryp.h" type="1"/>
+    <File name="components/rtos/include/comtest2.h" path="components/rtos/include/comtest2.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_gpio.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h" type="1"/>
+    <File name="components/rtos/include/AltBlckQ.h" path="components/rtos/include/AltBlckQ.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_fsmc.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_fsmc.h" type="1"/>
+    <File name="components/rtos/include/crhook.h" path="components/rtos/include/crhook.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_iwdg.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_iwdg.c" type="1"/>
+    <File name="components/rtos/portable.h" path="components/rtos/portable.h" type="1"/>
+    <File name="components/rtos/include/AltPollQ.h" path="components/rtos/include/AltPollQ.h" type="1"/>
+    <File name="components/rtos/Minimal/AltBlckQ.c" path="components/rtos/Minimal/AltBlckQ.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_rng.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rng.h" type="1"/>
+    <File name="components/rtos/queue.h" path="components/rtos/queue.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_can.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_can.c" type="1"/>
+    <File name="components/rtos/include/partest.h" path="components/rtos/include/partest.h" type="1"/>
+    <File name="sources/iar_stm32f407zg_sk.h" path="app/iar_stm32f407zg_sk.h" type="1"/>
+    <File name="components/rtos/event_groups.h" path="components/rtos/event_groups.h" type="1"/>
+    <File name="components/rtos/Minimal/QueueSet.c" path="components/rtos/Minimal/QueueSet.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_cryp.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp.c" type="1"/>
+    <File name="components/rtos/Minimal/crflash.c" path="components/rtos/Minimal/crflash.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_syscfg.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_syscfg.c" type="1"/>
+    <File name="components/rtos/Minimal/dynamic.c" path="components/rtos/Minimal/dynamic.c" type="1"/>
+    <File name="components/rtos/include/BlockQ.h" path="components/rtos/include/BlockQ.h" type="1"/>
+    <File name="components/rtos/include/death.h" path="components/rtos/include/death.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_can.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_can.h" type="1"/>
+    <File name="components/rtos/Minimal/semtest.c" path="components/rtos/Minimal/semtest.c" type="1"/>
+    <File name="components/rtos/include/crflash.h" path="components/rtos/include/crflash.h" type="1"/>
+    <File name="components/CMSIS/core_cmInstr.h" path="components/CMSIS/core_cmInstr.h" type="1"/>
+    <File name="components/rtos/include/EventGroupsDemo.h" path="components/rtos/include/EventGroupsDemo.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_wwdg.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_wwdg.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_cryp_tdes.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_tdes.c" type="1"/>
+    <File name="components/rtos/mpu_wrappers.h" path="components/rtos/mpu_wrappers.h" type="1"/>
+    <File name="components/rtos/Minimal/IntQueue.c" path="components/rtos/Minimal/IntQueue.c" type="1"/>
+    <File name="sources" path="" type="2"/>
+    <File name="components/rtos/deprecated_definitions.h" path="components/rtos/deprecated_definitions.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_rtc.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rtc.h" type="1"/>
+    <File name="components/rtos/include/TimerDemo.h" path="components/rtos/include/TimerDemo.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/misc.h" path="components/STM32F4xx_StdPeriph_Driver/inc/misc.h" type="1"/>
+    <File name="components/rtos/Minimal/AltQTest.c" path="components/rtos/Minimal/AltQTest.c" type="1"/>
+    <File name="components/rtos/queue.c" path="components/rtos/queue.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_cryp_des.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_des.c" type="1"/>
+    <File name="components/STM32F4xx/stm32f4xx.h" path="components/STM32F4xx/stm32f4xx.h" type="1"/>
+    <File name="components/rtos/include/countsem.h" path="components/rtos/include/countsem.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_pwr.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_pwr.c" type="1"/>
+    <File name="components/rtos/include/TaskNotify.h" path="components/rtos/include/TaskNotify.h" type="1"/>
+    <File name="sources/main.c" path="app/main.c" type="1"/>
+    <File name="components/STM32F4xx" path="" type="2"/>
+    <File name="components/CMSIS" path="" type="2"/>
+    <File name="components/rtos/Minimal/blocktim.c" path="components/rtos/Minimal/blocktim.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/misc.c" path="components/STM32F4xx_StdPeriph_Driver/src/misc.c" type="1"/>
+    <File name="sources/iar_stm32f407zg_sk.c" path="app/iar_stm32f407zg_sk.c" type="1"/>
+    <File name="components/rtos/include/serial.h" path="components/rtos/include/serial.h" type="1"/>
+    <File name="components/rtos/include/AltQTest.h" path="components/rtos/include/AltQTest.h" type="1"/>
+    <File name="components/rtos/include/GenQTest.h" path="components/rtos/include/GenQTest.h" type="1"/>
+    <File name="components/rtos/include/dynamic.h" path="components/rtos/include/dynamic.h" type="1"/>
+    <File name="components/rtos/Minimal/BlockQ.c" path="components/rtos/Minimal/BlockQ.c" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_syscfg.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h" type="1"/>
+    <File name="components/CMSIS/core_cm0.h" path="components/CMSIS/core_cm0.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_spi.h" path="components/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_spi.h" type="1"/>
+    <File name="components" path="" type="2"/>
+    <File name="sources/arm_comm.h" path="app/arm_comm.h" type="1"/>
+    <File name="components/rtos/Minimal/flop.c" path="components/rtos/Minimal/flop.c" type="1"/>
+    <File name="components/rtos/portmacro.h" path="components/rtos/portmacro.h" type="1"/>
+    <File name="components/STM32F4xx_StdPeriph_Driver/stm32f4xx_rtc.c" path="components/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rtc.c" type="1"/>
+    <File name="components/rtos/include/QueueSet.h" path="components/rtos/include/QueueSet.h" type="1"/>
+    <File name="components/rtos/include/flash.h" path="components/rtos/include/flash.h" type="1"/>
+  </Files>
+  <Bookmarks/>
+</Project>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dependencies>
+   <includePath signature="/ID:\Project\stm32f401vc\freeRTOS\components\CMSIS /ID:\Project\stm32f401vc\freeRTOS /ID:\Project\stm32f401vc\freeRTOS\components\STM32F4xx_StdPeriph_Driver /ID:\Project\stm32f401vc /ID:\Project\stm32f401vc\freeRTOS\components\STM32F4xx_StdPeriph_Driver\inc /ID:\Project\stm32f401vc\freeRTOS\components\STM32F4xx /ID:\Project\stm32f401vc\freeRTOS\components">
+      <source file="..\..\..\components\startup_stm32f4xx.S" lastModified="1520e720729">
+      </source>
+      <source file="..\..\..\components\CMSIS\core_cmFunc.h" lastModified="149678b18e6">
+      </source>
+      <source file="..\..\..\components\STM32F4xx\stm32f4xx.h" lastModified="149678b18e6">
+         <include file="..\..\..\components\CMSIS\core_cm4.h"/>
+         <include file="..\..\..\components\STM32F4xx\system_stm32f4xx.h"/>
+         <include file="..\..\..\components\STM32F4xx\stm32f4xx_conf.h"/>
+      </source>
+      <source file="..\..\..\components\CMSIS\core_cm4_simd.h" lastModified="149678b18e6">
+      </source>
+      <source file="..\..\..\components\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c" lastModified="149678b151c">
+         <include file="..\..\..\components\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\components\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h"/>
+      </source>
+      <source file="..\..\..\components\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h" lastModified="149678b1508">
+         <include file="..\..\..\components\STM32F4xx\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\components\CMSIS\core_cm4.h" lastModified="149678b18e6">
+         <include file="..\..\..\components\CMSIS\core_cmInstr.h"/>
+         <include file="..\..\..\components\CMSIS\core_cmFunc.h"/>
+         <include file="..\..\..\components\CMSIS\core_cm4_simd.h"/>
+      </source>
+      <source file="..\..\..\components\CMSIS\core_cmInstr.h" lastModified="149678b18e6">
+      </source>
+      <source file="..\..\..\components\system_stm32f4xx.c" lastModified="149678b1526">
+         <include file="..\..\..\components\STM32F4xx\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\components\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c" lastModified="149678b151c">
+         <include file="..\..\..\components\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h"/>
+      </source>
+      <source file="..\..\..\components\STM32F4xx\system_stm32f4xx.h" lastModified="149678b14fe">
+      </source>
+      <source file="..\..\..\components\main.h" lastModified="149678b1526">
+         <include file="..\..\..\components\STM32F4xx\stm32f4xx.h"/>
+         <include file="..\..\..\components\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\components\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h"/>
+      </source>
+      <source file="..\..\..\app\main.c" lastModified="1520e727b0b">
+         <include file="..\..\..\components\main.h"/>
+      </source>
+      <source file="..\..\..\components\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h" lastModified="149678b1508">
+         <include file="..\..\..\components\STM32F4xx\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\components\STM32F4xx\stm32f4xx_conf.h" lastModified="149678b14fe">
+      </source>
+   </includePath>
+</dependencies>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="5.2.1 -mcpu=cortex-m4 -mthumb -g2 -Map=freeRTOS.map -O0 --gc-sections -LC:\Users\vetal\AppData\Roaming\CooCox\CoIDE\configuration\ProgramData\freeRTOS -TC:\Users\vetal\AppData\Roaming\CooCox\CoIDE\configuration\ProgramData\freeRTOS/arm-gcc-link.ld -g">
+      <target file="freeRTOS.elf" lastModified="1520e7b1f1c">
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="1520e7b1c05"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="1520e7b1d1c"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="1520e7b1c97"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="1520e7b1ce7"/>
+         <source file="..\obj\main.o" lastModified="1520e7b1c44"/>
+      </target>
+   </processor>
+</history>

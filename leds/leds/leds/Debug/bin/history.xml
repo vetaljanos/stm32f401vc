@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="5.2.1 -mcpu=cortex-m4 -mthumb -g2 -Map=leds.map -O0 --gc-sections -LC:\Users\vetal\AppData\Roaming\CooCox\CoIDE\configuration\ProgramData\leds -TC:\Users\vetal\AppData\Roaming\CooCox\CoIDE\configuration\ProgramData\leds/arm-gcc-link.ld -g">
+      <target file="leds.elf" lastModified="1520e86bb1c">
+         <source file="..\obj\stm32f4xx_hash_sha1.o" lastModified="1520e86b0e2"/>
+         <source file="..\obj\stm32f4xx_sdio.o" lastModified="1520e86affc"/>
+         <source file="..\obj\stm32f4xx_dma.o" lastModified="1520e86b612"/>
+         <source file="..\obj\stm32f4xx_iwdg.o" lastModified="1520e86b314"/>
+         <source file="..\obj\stm32f4xx_wwdg.o" lastModified="1520e86b20b"/>
+         <source file="..\obj\stm32f4xx_tim.o" lastModified="1520e86b8d3"/>
+         <source file="..\obj\stm32f4xx_hash_md5.o" lastModified="1520e86b250"/>
+         <source file="..\obj\stm32f4xx_spi.o" lastModified="1520e86b659"/>
+         <source file="..\obj\stm32f4xx_can.o" lastModified="1520e86b1d7"/>
+         <source file="..\obj\stm32f4xx_dac.o" lastModified="1520e86b28e"/>
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="1520e86b2ac"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="1520e86b3a2"/>
+         <source file="..\obj\stm32f4xx_dbgmcu.o" lastModified="1520e86b909"/>
+         <source file="..\obj\stm32f4xx_cryp.o" lastModified="1520e86b4b4"/>
+         <source file="..\obj\stm32f4xx_adc.o" lastModified="1520e86b3f3"/>
+         <source file="..\obj\stm32f4xx_syscfg.o" lastModified="1520e86afba"/>
+         <source file="..\obj\stm32f4xx_crc.o" lastModified="1520e86b2e0"/>
+         <source file="..\obj\stm32f4xx_i2c.o" lastModified="1520e86b6c4"/>
+         <source file="..\obj\stm32f4xx_hash.o" lastModified="1520e86b09b"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="1520e86b5d0"/>
+         <source file="..\obj\stm32f4xx_rng.o" lastModified="1520e86b6fb"/>
+         <source file="..\obj\stm32f4xx_cryp_tdes.o" lastModified="1520e86b838"/>
+         <source file="..\obj\stm32f4xx_dcmi.o" lastModified="1520e86b42f"/>
+         <source file="..\obj\stm32f4xx_cryp_des.o" lastModified="1520e86b474"/>
+         <source file="..\obj\stm32f4xx_fsmc.o" lastModified="1520e86b4fe"/>
+         <source file="..\obj\stm32f4xx_pwr.o" lastModified="1520e86b183"/>
+         <source file="..\obj\stm32f4xx_cryp_aes.o" lastModified="1520e86b05f"/>
+         <source file="..\obj\stm32f4xx_usart.o" lastModified="1520e86b14b"/>
+         <source file="..\obj\misc.o" lastModified="1520e86b769"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="1520e86b54f"/>
+         <source file="..\obj\stm32f4xx_rtc.o" lastModified="1520e86b7f1"/>
+         <source file="..\obj\stm32f4xx_flash.o" lastModified="1520e86b59a"/>
+         <source file="..\obj\stm32f4xx_exti.o" lastModified="1520e86b731"/>
+         <source file="..\obj\main.o" lastModified="1520e86b34f"/>
+      </target>
+   </processor>
+</history>
