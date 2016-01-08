@@ -39,7 +39,9 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-osThreadId defaultTaskHandle;
+osThreadId ledBlinkTaskHandle;
+osThreadId buttonScanTaskHandle;
+xQueueHandle keyboardQueue;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -49,7 +51,8 @@ osThreadId defaultTaskHandle;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-void StartDefaultTask(void const * argument);
+void LedBlinkTask(void const * argument);
+void ButtonScanTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -95,8 +98,14 @@ int main(void) {
 
 	/* Create the thread(s) */
 	/* definition and creation of defaultTask */
-	osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
-	defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+
+	keyboardQueue = xQueueCreate(1, sizeof(int *));
+
+	osThreadDef(ledBlinkTask, LedBlinkTask, osPriorityNormal, 0, 128);
+	ledBlinkTaskHandle = osThreadCreate(osThread(ledBlinkTask), NULL);
+
+	osThreadDef(buttonScanTask, ButtonScanTask, osPriorityNormal, 0, 128);
+	buttonScanTaskHandle = osThreadCreate(osThread(buttonScanTask), NULL);
 
 	/* USER CODE BEGIN RTOS_THREADS */
 	/* add threads, ... */
@@ -243,7 +252,7 @@ void MX_GPIO_Init(void) {
 
 	/*Configure GPIO pin : PA4 */
 	GPIO_InitStruct.Pin = GPIO_PIN_4;
-	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
 	GPIO_InitStruct.Alternate = GPIO_AF6_SPI3;
@@ -315,25 +324,64 @@ void MX_GPIO_Init(void) {
 
 /* USER CODE END 4 */
 
-/* StartDefaultTask function */
-void StartDefaultTask(void const * argument) {
-
-	/* USER CODE BEGIN 5 */
-	/* Infinite loop */
+void LedBlinkTask(void const * argument) {
 
 	uint32_t counter = 0;
 
+	static int started = 0;
+
+	int data;
+
+	int mode = 0;
+
 	for (;;) {
 
-		HAL_GPIO_WritePin(GPIOD, x_LEDS, GPIO_PIN_RESET);//  GPIO_ResetBits(GPIOD, LEDS);
+		if (!started) {
+			if (xQueueReceive(keyboardQueue, &data, 100)) {
+				started = 1;
 
-		HAL_GPIO_WritePin(GPIOD, x_LED[counter % 4], GPIO_PIN_SET); //GPIO_SetBits(GPIOD, LED[counter % 4]);
+				mode = data;
+			}
 
-		osDelay(100);
+			osDelay(1);
+		} else {
+			if (xQueueReceive(keyboardQueue, &data, 1)) {
+				mode = data;
+			}
 
-		++counter;
+			if (mode == 1) {
+
+				--counter;
+			} else {
+				++counter;
+			}
+
+			HAL_GPIO_WritePin(GPIOD, x_LEDS, GPIO_PIN_RESET);//  GPIO_ResetBits(GPIOD, LEDS);
+
+			HAL_GPIO_WritePin(GPIOD, x_LED[counter % 4], GPIO_PIN_SET); //GPIO_SetBits(GPIOD, LED[counter % 4]);
+
+			osDelay(100);
+		}
 	}
-	/* USER CODE END 5 */
+}
+
+void ButtonScanTask(void const * argument) {
+	int previous = 0;
+
+
+	for (;;) {
+		GPIO_PinState state = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+
+		if (state == GPIO_PIN_SET) {
+			previous = previous == 0 ? 1 : 0;
+
+			xQueueSend(keyboardQueue, &previous, 0);
+
+			osDelay(100);
+		} else {
+			osDelay(10);
+		}
+	}
 }
 
 #ifdef USE_FULL_ASSERT
