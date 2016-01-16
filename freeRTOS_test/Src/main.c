@@ -35,15 +35,20 @@
 #include "cmsis_os.h"
 
 /* USER CODE BEGIN Includes */
+#include "stdlib.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-osThreadId LedBlinkTaskHandle;
-osThreadId ButtonScanTaskHandle;
-osMessageQId keyboardQueueHandle;
+UART_HandleTypeDef huart2;
+DMA_HandleTypeDef hdma_usart2_tx;
+DMA_HandleTypeDef hdma_usart2_rx;
+
+osThreadId IndicatorTaskHandle;
+osThreadId UARTReceiveTaskHandle;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+
 const uint16_t x_LEDS = GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15;
 const uint16_t x_LED[4] = {GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15};
 /* USER CODE END PV */
@@ -51,11 +56,16 @@ const uint16_t x_LED[4] = {GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15};
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-void StartLedBlinkTask(void const * argument);
-void StartButtonScanTask(void const * argument);
+static void MX_DMA_Init(void);
+static void MX_USART2_UART_Init(void);
+void StartIndicatorTask(void const * argument);
+void StartUARTReceiveTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
+
+static void errorHandler();
+static void warnHandler();
 
 /* USER CODE END PFP */
 
@@ -80,6 +90,8 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_USART2_UART_Init();
 
   /* USER CODE BEGIN 2 */
 
@@ -98,22 +110,17 @@ int main(void)
   /* USER CODE END RTOS_TIMERS */
 
   /* Create the thread(s) */
-  /* definition and creation of LedBlinkTask */
-  osThreadDef(LedBlinkTask, StartLedBlinkTask, osPriorityNormal, 0, 128);
-  LedBlinkTaskHandle = osThreadCreate(osThread(LedBlinkTask), NULL);
+  /* definition and creation of IndicatorTask */
+  osThreadDef(IndicatorTask, StartIndicatorTask, osPriorityNormal, 0, 128);
+  IndicatorTaskHandle = osThreadCreate(osThread(IndicatorTask), NULL);
 
-  /* definition and creation of ButtonScanTask */
-  osThreadDef(ButtonScanTask, StartButtonScanTask, osPriorityIdle, 0, 128);
-  ButtonScanTaskHandle = osThreadCreate(osThread(ButtonScanTask), NULL);
+  /* definition and creation of UARTReceiveTask */
+  osThreadDef(UARTReceiveTask, StartUARTReceiveTask, osPriorityIdle, 0, 128);
+  UARTReceiveTaskHandle = osThreadCreate(osThread(UARTReceiveTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
 
   /* USER CODE END RTOS_THREADS */
-
-  /* Create the queue(s) */
-  /* definition and creation of keyboardQueue */
-  osMessageQDef(keyboardQueue, 1, uint8_t);
-  keyboardQueueHandle = osMessageCreate(osMessageQ(keyboardQueue), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
 	/* add queues, ... */
@@ -172,6 +179,38 @@ void SystemClock_Config(void)
 
   /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 15, 0);
+}
+
+/* USART2 init function */
+void MX_USART2_UART_Init(void)
+{
+
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  HAL_UART_Init(&huart2);
+
+}
+
+/** 
+  * Enable DMA controller clock
+  */
+void MX_DMA_Init(void) 
+{
+  /* DMA controller clock enable */
+  __DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
+  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
+
 }
 
 /** Configure pins as 
@@ -322,76 +361,102 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void errorHandler() {
+	vTaskSuspendAll();
 
+	HAL_GPIO_WritePin(GPIOD, V_LED_GREEN, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOD, V_LED_ORANGE, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOD, V_LED_BLUE, GPIO_PIN_RESET);
+
+	HAL_GPIO_WritePin(GPIOD, V_LED_RED, GPIO_PIN_SET);
+
+	vTaskSuspendAll();
+}
+
+void warnHandler() {
+	HAL_GPIO_WritePin(GPIOD, V_LED_ORANGE, GPIO_PIN_SET);
+}
 /* USER CODE END 4 */
 
-/* StartLedBlinkTask function */
-void StartLedBlinkTask(void const * argument)
+/* StartIndicatorTask function */
+void StartIndicatorTask(void const * argument)
 {
 
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
-	uint32_t counter = 0;
-
-	static int started = 0;
-
-	uint8_t data;
-
-	int mode = 0;
-
 	for (;;) {
-		if (!started) {
-			//wait for button to start leds blick
-			if (xQueueReceive(keyboardQueueHandle, &data, 100)) {
-				started = 1;
+		HAL_GPIO_WritePin(GPIOD, V_LED_GREEN, GPIO_PIN_SET);
 
-				mode = data;
-			}
+		osDelay(1000);
 
-			osDelay(1);
-		} else {
-			if (xQueueReceive(keyboardQueueHandle, &data, 1)) {
-				mode = data;
-			}
+		HAL_GPIO_WritePin(GPIOD, V_LED_GREEN, GPIO_PIN_RESET);
 
-			if (mode == 1) {
-
-				--counter;
-			} else {
-				++counter;
-			}
-
-			HAL_GPIO_WritePin(GPIOD, x_LEDS, GPIO_PIN_RESET); //  GPIO_ResetBits(GPIOD, LEDS);
-
-			HAL_GPIO_WritePin(GPIOD, x_LED[counter % 4], GPIO_PIN_SET); //GPIO_SetBits(GPIOD, LED[counter % 4]);
-
-			osDelay(100);
-		}
+		osDelay(1000);
 	}
-  /* USER CODE END 5 */
+  /* USER CODE END 5 */ 
 }
 
-/* StartButtonScanTask function */
-void StartButtonScanTask(void const * argument)
+/* StartUARTReceiveTask function */
+void StartUARTReceiveTask(void const * argument)
 {
-  /* USER CODE BEGIN StartButtonScanTask */
+  /* USER CODE BEGIN StartUARTReceiveTask */
   /* Infinite loop */
-	uint8_t previous = 0;
+	uint8_t *data = malloc(sizeof(uint8_t));
+
+	int BUFFER_SIZE = 1;
 
 	for (;;) {
-		GPIO_PinState state = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
 
-		if (state == GPIO_PIN_SET) {
-			previous = previous == 0 ? 1 : 0;
+//		if (HAL_UART_GetState(&huart2) == HAL_UART_STATE_READY) {
 
-			xQueueSend(keyboardQueueHandle, &previous, 0);
+			HAL_StatusTypeDef status = HAL_UART_Receive_DMA(&huart2, data, BUFFER_SIZE);
 
-			osDelay(200);
-		} else {
-			osDelay(10);
-		}
+			if (status != HAL_OK) {
+				errorHandler();
+			}
+
+			for (uint8_t doneReceiveDMA=0; !doneReceiveDMA;) {
+				HAL_DMA_StateTypeDef DMAstate = HAL_DMA_GetState(&hdma_usart2_rx);
+
+				switch(DMAstate) {
+
+				case HAL_DMA_STATE_READY_MEM0:
+				case HAL_DMA_STATE_READY_MEM1:
+					//we received data. Let's do return it back to UART
+
+					for (uint8_t doneTransmitDMA=0; !doneTransmitDMA; ) {
+						HAL_UART_StateTypeDef uartState = HAL_UART_GetState(&huart2);
+
+						if (uartState == HAL_UART_STATE_READY || uartState == HAL_UART_STATE_BUSY_RX) {
+						HAL_StatusTypeDef transmitStatus =
+								HAL_UART_Transmit_DMA(&huart2, data, BUFFER_SIZE);
+
+							if (transmitStatus != HAL_OK) {
+								errorHandler();
+							}
+
+							doneTransmitDMA = 1;
+						}
+					}
+
+					doneReceiveDMA = 1;
+
+					break;
+
+				case HAL_DMA_STATE_BUSY:
+					break;
+
+				case HAL_DMA_STATE_READY:
+					//strange state of DMA.
+
+				default:
+					warnHandler();
+				}
+			}
+
+		osDelay(1);
 	}
-  /* USER CODE END StartButtonScanTask */
+  /* USER CODE END StartUARTReceiveTask */
 }
 
 #ifdef USE_FULL_ASSERT

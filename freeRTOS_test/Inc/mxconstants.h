@@ -33,6 +33,10 @@
 /* Includes ------------------------------------------------------------------*/
 
 /* USER CODE BEGIN Includes */
+#define V_LED_GREEN GPIO_PIN_12
+#define V_LED_ORANGE GPIO_PIN_13
+#define V_LED_RED GPIO_PIN_14
+#define V_LED_BLUE GPIO_PIN_15
 
 /* USER CODE END Includes */
 
