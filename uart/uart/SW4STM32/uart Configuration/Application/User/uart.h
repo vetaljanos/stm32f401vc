@@ -11,7 +11,7 @@
 #include "stm32f4xx_hal.h"
 #include "cmsis_os.h"
 
-#define MAX_STR_LENGTH ((uint8_t) 255 - 2)
+#define MAX_STR_LENGTH ((uint8_t) 255 - 1)
 
 void startUART_DMA_Receiver(UART_HandleTypeDef *hUART, osMessageQId *cmdQueue);
 

@@ -23,9 +23,11 @@ response: red LED disabled
 ## Configuration
 
 ### UART
-PA2 - tx. Connected to rx of my FT232 driver. Uses to transmit data to computer
-PA3 - rx. Connected to tx of my FT232 driver. Uses to receive UART data
-GND - FT232 GND. Must be connected to make UART working
+
+* PA2 - tx. Connected to rx of my FT232 driver. Uses to transmit data to computer
+* PA3 - rx. Connected to tx of my FT232 driver. Uses to receive UART data
+* GND - FT232 GND. Must be connected to make UART working
 
 ### LEDS
-Green LED (PIN_12) blinks with 1 sec frequency to indicate OS is working
+
+* Green LED (PIN_12) blinks with 1 sec frequency to indicate OS is working

@@ -33,7 +33,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			//there is no command. rxString is empty. Ignore it
 		} else {
 			//set string end
-			rxString[rxIndex++] = '\n';
 			rxString[rxIndex++] = 0;
 
 			//send to queue

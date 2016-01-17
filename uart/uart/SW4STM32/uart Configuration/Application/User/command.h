@@ -20,8 +20,20 @@
 #define CMD_OFF "off "
 #define CMD_OFF_LENGTH ((size_t) 4)
 
+#define CMD_TEMP "temp"
+#define CMD_TEMP_LENGTH ((size_t) 4)
+
+#define CMD_ADC "adc "
+#define CMD_ADC_LENGTH ((size_t) 4)
+
 #define isPinOK(pin) pin >= 0 && pin < 16
 
-void executeCommand(UART_HandleTypeDef *hUART, uint8_t *command);
+typedef struct {
+	UART_HandleTypeDef *uartHandler;
+	ADC_HandleTypeDef *adcHandler;
+	osMessageQId commandQueueHandler;
+} Environment;
+
+void executeCommand(Environment *environment, uint8_t *command);
 
 #endif /* APPLICATION_USER_COMMAND_H_ */
