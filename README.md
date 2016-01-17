@@ -11,4 +11,4 @@ This is my playing with stm32f401vc discovery board.
 	
 ## Projects
 
-* [UART/DMA/LEDS](/tree/master/uart)
+* [UART/DMA/LEDS](https://github.com/vetaljanos/stm32f401vc/tree/master/uart)
