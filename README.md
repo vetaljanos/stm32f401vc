@@ -12,3 +12,4 @@ This is my playing with stm32f401vc discovery board.
 ## Projects
 
 * [UART/DMA/LEDS](https://github.com/vetaljanos/stm32f401vc/tree/master/uart)
+* [ADC/Timers/UART](https://github.com/vetaljanos/stm32f401vc/tree/master/adc_to_uart)
