@@ -8,6 +8,8 @@
 * Task to process queue strings
 * Detect ping command to answer argument string back to UART
 * Detect on/off commands to enable/disable PIN number passed as argument
+* Process command temp - request temperature sensor
+* Process adc command - request adc for channel
 	
 ## Examples of command:
 
@@ -19,6 +21,12 @@ response: red LED enabled
 
 request: off 14
 response: red LED disabled
+
+request: temp
+response: channel 00000016 = 00001024
+
+request: adc 0 3 (0 - channel, optional. Default value=0; 3 is SamplingTime. 1: ADC_SAMPLETIME_3CYCLES, 2: ADC_SAMPLETIME_84CYCLES, 3: ADC_SAMPLETIME_480CYCLES. Optional. Default value ADC_SAMPLETIME_480CYCLES)
+response: channel 00000000 = 00001024
 
 ## Configuration
 
