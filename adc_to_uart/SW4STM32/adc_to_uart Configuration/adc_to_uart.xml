@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <targetDefinitions xmlns="http://openstm32.org/stm32TargetDefinitions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openstm32.org/stm32TargetDefinitions stm32TargetDefinitions.xsd">
-  <board id="uart">
-    <name>uart</name>
+  <board id="adc_to_uart">
+    <name>adc_to_uart</name>
     <mcuId>stm32f401vctx</mcuId>
     <dbgIF>SWD</dbgIF>
     <dbgDEV>ST-LinkV2</dbgDEV>

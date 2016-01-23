@@ -11,6 +11,10 @@
 
 static TaskHandle_t hCommandTask;
 static Environment *environment;
+//static uint16_t *TS_CAL1 = 0x1FFF7A2C;
+//static uint16_t *TS_CAL2 = 0x1FFF7A2E;
+
+static uint32_t adc0Buffer[100];
 
 static void processPingCommand(uint8_t *command) {
 	hCommandTask = xTaskGetCurrentTaskHandle();
@@ -71,56 +75,14 @@ static void writePinCommand(uint8_t *pinStr, GPIO_PinState state) {
 	}
 }
 
-static void processADCTemperature() {
-	ADC_ChannelConfTypeDef config;
-
-	config.Channel = ADC_CHANNEL_TEMPSENSOR;
-	config.Rank = 1;
-	config.SamplingTime = ADC_SAMPLETIME_480CYCLES;
-	HAL_ADC_ConfigChannel(environment->adcHandler, &config);
-
-	HAL_ADC_Start_IT(environment->adcHandler);
-}
-
 static void processADCCommand(uint8_t *args) {
-	//int pin = atoi((char*) pinStr);
-	char *pinStr = strtok((char*) args, " ");
-	char *samplesStr = strtok(NULL, " ");
+//	if (environment->adcHandler->Instance->CR2 == ADC_CR2_DMA) {
+		//dma is working. Stop it
 
-	int pin = atoi(pinStr);
-
-	if (pin >= 0 && pin <= 18) {
-		//not defined
-
-		uint32_t channel;
-
-		switch (pin) {
-		case 0:channel = ADC_CHANNEL_0;break;
-		case 16:channel = ADC_CHANNEL_16;break;
-		default:channel = ADC_CHANNEL_0;
-			//define another channels if you need
-		}
-
-		uint32_t samplingTime;
-
-		int samples = samplesStr == NULL ? 1 : atoi(samplesStr);
-
-		switch (samples) {
-		case 1:samplingTime = ADC_SAMPLETIME_3CYCLES;break;
-		case 2:samplingTime = ADC_SAMPLETIME_84CYCLES;break;
-		case 3:samplingTime = ADC_SAMPLETIME_480CYCLES;break;
-		default: samplingTime = ADC_SAMPLETIME_480CYCLES;break;
-		}
-
-		ADC_ChannelConfTypeDef config;
-
-		config.Channel = channel;
-		config.Rank = 1;
-		config.SamplingTime = samplingTime;
-		HAL_ADC_ConfigChannel(environment->adcHandler, &config);
-
-		HAL_ADC_Start_IT(environment->adcHandler);
-	}
+	//	HAL_ADC_Stop_DMA(environment->adcHandler);
+	//} else {
+		HAL_ADC_Start_DMA(environment->adcHandler, adc0Buffer, 100);
+	//}
 }
 
 void executeCommand(Environment *env, uint8_t *command) {
@@ -134,8 +96,6 @@ void executeCommand(Environment *env, uint8_t *command) {
 		writePinCommand(command + CMD_ON_LENGTH, GPIO_PIN_SET);
 	} else if (strncmp((char*) command, CMD_OFF, CMD_OFF_LENGTH) == 0) {
 		writePinCommand(command + CMD_OFF_LENGTH, GPIO_PIN_RESET);
-	} else if (strncmp((char*) command, CMD_TEMP, CMD_TEMP_LENGTH) == 0) {
-		processADCTemperature();
 	} else if (strncmp((char*) command, CMD_ADC, CMD_ADC_LENGTH) == 0) {
 		processADCCommand(command + CMD_ADC_LENGTH);
 	}
@@ -146,12 +106,11 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle) {
-	uint32_t value = HAL_ADC_GetValue(AdcHandle);
+	char *str = malloc(25);
 
-	char *str = malloc(34);
-
-	sprintf(str, "ping channel %08ld = %08ld\n", AdcHandle->Instance->SQR3, value);
+	sprintf(str, "ping channel = %08ld\n", adc0Buffer[99]);
 
 	//push it to the same queue which process UART input
 	xQueueSendFromISR(environment->commandQueueHandler, &str, 0);
+
 }
